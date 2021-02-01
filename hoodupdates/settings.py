@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'hoodupdates.urls'
@@ -163,5 +164,10 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
 LOGIN_REDIRECT_URL = 'mainpage'
 LOGOUT_REDIRECT_URL = 'login'
+
+# DEPLOYMENT
+django_heroku.settings(locals())
