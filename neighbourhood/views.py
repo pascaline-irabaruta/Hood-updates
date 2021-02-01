@@ -30,7 +30,6 @@ def join_neighbourhood(request, community_id):
         request.user.save()
         return redirect('neighbourhood',pk=1)
     else:
-        # return render(request, 'neighbourhood_list.html')
          return redirect('neighbourhood_list')
 
 @login_required(login_url='login')
@@ -62,3 +61,11 @@ class CreateBusinessView(LoginRequiredMixin,CreateView):
     def form_valid(self, form):
         form.instance.neighbourhood = self.request.user.neighbourhood
         return super().form_valid(form)
+
+class AboutView(TemplateView):
+    template_name = "about.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["user"] = self.request.user
+        return context
