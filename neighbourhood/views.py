@@ -21,3 +21,14 @@ class NeighbourhoodListView(LoginRequiredMixin,ListView):
     model = Neighbourhood
     template_name = 'neighbourhood_list.html'
     login_url = 'login'
+
+@login_required(login_url='login')
+def join_neighbourhood(request, community_id):
+    if(request.user.neighbourhood == None ):
+        new_hood = Neighbourhood.objects.get(id=community_id)
+        request.user.neighbourhood  = new_hood
+        request.user.save()
+        return redirect('neighbourhood',pk=1)
+    else:
+        # return render(request, 'neighbourhood_list.html')
+         return redirect('neighbourhood_list')
