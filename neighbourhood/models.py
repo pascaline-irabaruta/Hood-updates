@@ -17,3 +17,31 @@ class Neighbourhood(models.Model):
 
     def get_absolute_url(self):
         return reverse('home')
+
+class Business(models.Model):
+    FOOD = 1
+    BEAUTY = 2
+    SOCIAL = 3
+    ENTERTAINMENT = 4
+    HOUSING = 5
+
+    BUSINESS_CATEGORIES = [
+        (FOOD, 'Food and Beverages'),
+        (BEAUTY, 'Beauty shops'),
+        (SOCIAL,'Social Amentity'),
+        (ENTERTAINMENT, 'Entertainment'),
+        (HOUSING, 'Housing'),
+    ]
+
+    image = models.ImageField(upload_to='business_avatars', default='business.jpg')
+    name = models.CharField(max_length=200)
+    location = models.CharField(max_length=200)
+    description = models.TextField(blank=True, null=True)
+    category = models.PositiveSmallIntegerField(choices=BUSINESS_CATEGORIES)
+    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, related_name='businesses')
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('neighbourhood', args=[self.neighbourhood.id])
