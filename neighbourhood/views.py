@@ -32,3 +32,12 @@ def join_neighbourhood(request, community_id):
     else:
         # return render(request, 'neighbourhood_list.html')
          return redirect('neighbourhood_list')
+
+@login_required(login_url='login')
+def leave_neighbourhood(request, community_id):
+    if request.method == 'GET':
+        return render(request, 'neighbourhood_leave.html')
+    else:
+        request.user.neighbourhood = None
+        request.user.save()
+        return redirect('mainpage')
