@@ -1,0 +1,109 @@
+{% extends 'base.html'%}
+{% block content %}
+{% load static %}
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="{% url 'mainpage'%}">
+            <img src="{% static '/images/logo.png' %}" width="112" height="28">
+            <span>Hood updates</span>
+        </a>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+            data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            {% if user.is_authenticated and user.neighbourhood != None %}
+            <a class="navbar-item" href="{%url 'neighbourhood' user.neighbourhood.id%}">
+                Home
+            </a>
+            {% endif %}
+        </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                {% if user.is_authenticated %}
+                <!-- <div class=" navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        {{user}}
+                    </a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="{% url 'profile' user.id %}">
+                            Profile
+                        </a>
+                        <hr class="navbar-divider">
+                        <a href="{% url 'logout' %}" class="navbar-item">
+                            Log Out
+                        </a>
+                    </div>
+                </div> -->
+                <div class="buttons">
+                    <a href="{% url 'logout' %}" class="button is-light">
+                        Log Out
+                    </a>
+                </div>
+                {%else%}
+                <div class="buttons">
+                    <a href="{% url 'register' %}" class="button is-primary">
+                        <strong>Sign up</strong>
+                    </a>
+                    <a href="{% url 'login' %}" class="button is-light">
+                        Log in
+                    </a>
+                </div>
+                {% endif%}
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="has-text-centered">
+    <p class="title is-2"> Our Communities</p>
+    <hr class="hr" style="margin-bottom: 15; width: 70%; margin-left: auto; margin-right: auto;">
+</div>
+<section>
+    <div class="container">
+        <div class="columns is-multiline">
+            {% for community in object_list %}
+            <div class="column is-one-third">
+                <div class="card">
+                    <div class="card-image">
+                        <figure class="image is-4by3">
+                            <img src="{{community.image.url}}" alt="Placeholder image">
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-content">
+                                <p class="title is-4">{{community.name}}</p>
+                                <p class="subtitle is-6"><i class="fa fa-map-marker-alt"></i>{{community.location}}</p>
+                            </div>
+                        </div>
+
+                        <div class="content">
+                            {{community.description}}
+                        </div>
+                    </div>
+                    {% if user.neighbourhood == None %}
+                    <footer class="card-footer">
+                        <a href="{% url 'join_neighbourhood' community.id %}"
+                            class="card-footer-item button is-outlined is-primary" style="background-color:#54606E;">Join</a>
+                        <!-- <a href="#" class="card-footer-item">Edit</a>
+                                <a href="#" class="card-footer-item">Delete</a> -->
+                    </footer>
+                    {% endif %}
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+{% endblock content%}
