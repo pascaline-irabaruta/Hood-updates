@@ -30,6 +30,7 @@ def join_neighbourhood(request, community_id):
         request.user.save()
         return redirect('neighbourhood',pk=1)
     else:
+        # return render(request, 'neighbourhood_list.html')
          return redirect('neighbourhood_list')
 
 @login_required(login_url='login')
@@ -41,6 +42,16 @@ def leave_neighbourhood(request, community_id):
         request.user.save()
         return redirect('mainpage')
 
+# def search_results(request):
+    # search_term = request.GET.get('search_term')
+    # hood = request.GET.get('hood')
+    # # print(search_results, hood)
+
+    # businesses = Business.search_business(search_term,hood)
+    # if businesses:
+    #     return render(request,'neighbourhood.html', context={'object_list':businesses})
+    # else:
+    #     return render(request,'neighbourhood.html')
 def search_results(request):
     if request.method == "GET":
         search_term = request.GET.get("search")

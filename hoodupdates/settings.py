@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'hoodupdates.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'hoodupdates',
+        'NAME': 'hoods',
         'USER': 'pascy',
     'PASSWORD':'21338',
     }
@@ -116,7 +116,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+UPLOADCARE = {
+    'pub_key': '1b83c89c994432fe153b',
+    'secret': '17faf78ed67b75efad01',
+}
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
