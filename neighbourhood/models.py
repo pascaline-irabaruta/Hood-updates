@@ -54,7 +54,10 @@ class Business(models.Model):
 
     def create_business(self):
         self.save()
-        
+
+    def delete_business(self):
+        self.delete()
+
     def get_absolute_url(self):
         return reverse('neighbourhood', args=[self.neighbourhood.id])
 
