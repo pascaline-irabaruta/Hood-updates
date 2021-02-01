@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from django.urls import reverse
-
 # Create your models here.
 
 
@@ -20,7 +19,7 @@ class Neighbourhood(models.Model):
 
     def delete_neighborhood(self):
         self.delete()
-        
+
     @classmethod
     def find_neighborhood(cls, neighborhood_id):
         return cls.objects.filter(id=neighborhood_id)
@@ -53,6 +52,9 @@ class Business(models.Model):
     def __str__(self):
         return self.name
 
+    def create_business(self):
+        self.save()
+        
     def get_absolute_url(self):
         return reverse('neighbourhood', args=[self.neighbourhood.id])
 
