@@ -23,3 +23,9 @@ class UserDetailView(LoginRequiredMixin,DetailView):
         if obj != self.request.user:
             raise PermissionDenied
         return super().dispatch(request, *args, **kwargs)
+
+class UserUpdateView(LoginRequiredMixin,UpdateView):
+    model = CustomUser
+    template_name = 'edit_profile.html'
+    fields = ('username', 'email', 'avatar', 'bio')
+    login_url = 'login'
