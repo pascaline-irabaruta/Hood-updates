@@ -1,0 +1,81 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content%}
+<section class="hero is-primary is-fullheight" style="background-color:#54606E;">
+    <div class="hero-head">
+        <header class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="">
+                        <img src="{% static '/images/logo.jpg'%}" alt="Logo" style="width:50px;height:100px;">
+                        <span>Hood updates</span>
+                    </a>
+                    <span class="navbar-burger burger" data-target="navbarMenuHeroC">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </div>
+                <div id="navbarMenuHeroC" class="navbar-menu">
+                    <div class="navbar-end">
+                        {% if user.is_authenticated and user.neighbourhood != None %}
+                        <span class="navbar-item" style="color:#54606E;">
+                            <a class="button is-success is-inverted"
+                                href="{% url 'neighbourhood' user.neighbourhood.id %}">
+                                <span>To the Hood</span>
+                            </a>
+                        </span>
+                        <a class="navbar-item" href="{% url 'logout' %}">
+                            Logout
+                        </a>
+                        {% elif user.is_authenticated %}
+                        <span class="navbar-item" style="color:#54606E;">
+                            <a class="button is-success is-inverted" href="{% url 'neighbourhood_list'%}">
+                                <span>Join a community</span>
+                            </a>
+                        </span>
+                        <a class="navbar-item" href="{% url 'logout' %}">
+                            Logout
+                        </a>
+                        {% else %}
+                        <a class="navbar-item" href="{% url 'login' %}">
+                            Log In
+                        </a>
+                        <span class="navbar-item">
+                            <a class="button is-success is-inverted" href="{% url 'register' %}">
+                                <span>Join Us</span>
+                            </a>
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <!-- Hero content: will be in the middle -->
+    <div class="hero-body" >
+        <div class="container has-text-centered">
+            <h1 class="title">
+                <i class="fas fa-home"></i>Welcome to Hood-Updates
+            </h1>
+            <h2 class="subtitle">
+                Be safe, Get informed and Get friends in a community!
+            </h2>
+        </div>
+
+    </div>
+    <div class="hero-foot">
+        <nav class="tabs is-boxed is-fullwidth">
+            <div class="container">
+                <ul>
+                    <li class="is-active"><a>Home</a></li>
+                    <li><a></a></li>
+                    <li><a href="{% url 'about'%}">About Us</a></li>
+
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+</section>
+{% endblock content%}
