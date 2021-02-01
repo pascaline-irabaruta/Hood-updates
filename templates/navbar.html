@@ -1,0 +1,70 @@
+{% load static %}
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="{% url 'mainpage'%}">
+            <img src="{% static '/images/logo.png' %}" width="112" height="28">
+            <span>Hood Updates</span>
+        </a>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+            data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            {% if user.is_authenticated and user.neighbourhood != None %}
+            <a class="navbar-item" href="{%url 'neighbourhood' user.neighbourhood.id%}">
+                Home
+            </a>
+            {% endif %}
+        </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                {% if user.is_authenticated %}
+                <div class=" navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        {{user}}
+                    </a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="{% url 'profile' user.id %}">
+                            Profile
+                        </a>
+                        <a class="navbar-item" href="{% url 'create_post'%}">
+                            Create Post
+                        </a>
+                        <a class="navbar-item" href="{% url 'create_business'%}">
+                            Create Business
+                        </a>
+                        <a class="navbar-item" href="{% url 'editprofile' user.id %}">
+                            Update Profile
+                        </a>
+                        <hr class="navbar-divider">
+                        <a href="{% url 'logout' %}" class="navbar-item">
+                            Log Out
+                        </a>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <a href="{% url 'logout' %}" class="button is-light">
+                        Log Out
+                    </a>
+                </div>
+                {%else%}
+                <div class="buttons">
+                    <a href="{% url 'register' %}" class="button is-primary">
+                        <strong>Sign up</strong>
+                    </a>
+                    <a href="{% url 'login' %}" class="button is-light">
+                        Log in
+                    </a>
+                </div>
+                {% endif%}
+            </div>
+        </div>
+    </div>
+</nav>
