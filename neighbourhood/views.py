@@ -52,3 +52,13 @@ def search_results(request):
                                                                 "businesses":businesses})
     message = "You haven't searched for any term"
     return render(request, "search.html", context={"message":message})
+
+class CreateBusinessView(LoginRequiredMixin,CreateView):
+    model = Business
+    template_name = 'business_create.html'
+    fields = ('image','name','location','description','category')
+    login_url = 'login'
+
+    def form_valid(self, form):
+        form.instance.neighbourhood = self.request.user.neighbourhood
+        return super().form_valid(form)
