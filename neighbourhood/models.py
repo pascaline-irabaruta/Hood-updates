@@ -58,6 +58,10 @@ class Business(models.Model):
     def delete_business(self):
         self.delete()
 
+    @classmethod
+    def find_business(cls, business_id):
+        return cls.objects.filter(id=businesss_id)
+
     def get_absolute_url(self):
         return reverse('neighbourhood', args=[self.neighbourhood.id])
 
