@@ -41,3 +41,14 @@ def leave_neighbourhood(request, community_id):
         request.user.neighbourhood = None
         request.user.save()
         return redirect('mainpage')
+
+def search_results(request):
+    if request.method == "GET":
+        search_term = request.GET.get("search")
+        businesses = Business.search_business(search_term)
+        message = "{}".format(search_term)
+
+        return render(request, "search.html", context={"message":message,
+                                                                "businesses":businesses})
+    message = "You haven't searched for any term"
+    return render(request, "search.html", context={"message":message})
