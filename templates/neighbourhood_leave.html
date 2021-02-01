@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load bulma_tags %}
+{% block content %}
+<section>
+    <div class="container">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <p class="title is-4">Are you sure You want to leave {{user.neighbourhood}}?</p>
+            <button class="button is-danger" type="submit"> Leave</button>
+            <a class="button is-primary" style="background-color:#54606E;" href="{% url 'profile' user.id%}">Cancel</a>
+        </form>
+    </div>
+</section>
+
+{% endblock content %}
