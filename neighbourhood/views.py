@@ -28,7 +28,7 @@ def join_neighbourhood(request, community_id):
         new_hood = Neighbourhood.objects.get(id=community_id)
         request.user.neighbourhood  = new_hood
         request.user.save()
-        return redirect('neighbourhood',pk=1)
+        return redirect('neighbourhood',pk=community_id)
     else:
         # return render(request, 'neighbourhood_list.html')
          return redirect('neighbourhood_list')

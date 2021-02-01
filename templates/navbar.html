@@ -18,7 +18,7 @@
         <div class="navbar-start">
             {% if user.is_authenticated and user.neighbourhood != None %}
             <a class="navbar-item" href="{%url 'neighbourhood' user.neighbourhood.id%}">
-                Home
+                My Hood
             </a>
             {% endif %}
         </div>
