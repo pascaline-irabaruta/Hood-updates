@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+{% load bulma_tags %}
+{% block content %}
+{% include 'navbar.html'%}
+<div class="columns">
+    <div class="column is-half is-offset-one-fifth">
+        <form action="" method="POST" enctype="multipart/form-data">
+            <fieldset class="box">
+                <legend class="label has-text-centered title is-4">Sign Up</legend>
+                {% csrf_token %}
+                {{form | bulma }}
+                <button type="submit" class="button is-primary">Create</button>
+            </fieldset>
+        </form>
+        <p>Already have an account? <a href="{% url 'login'%}">Sign In</a></p>
+    </div>
+</div>
+{% endblock content %}
