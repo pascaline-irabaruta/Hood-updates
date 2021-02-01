@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'hoodupdates.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'hood',
+        'NAME': 'hoodupdates',
         'USER': 'pascy',
     'PASSWORD':'21338',
     }
