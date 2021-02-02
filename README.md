@@ -3,9 +3,9 @@
   <h1 align="center" style="color:black;">Hood-Updates ...</h1>
 </a>
 </p>
-An web application that allows users to join neighbourhood and loop through everything that happens in the neighbourhood
+An web application that allows users to join neighbourhood and loop through everything that happens in the neighbourhood.
 
-## Technologies used
+### Technologies used
 
 1. Python3
 2. SQLite3
@@ -14,11 +14,11 @@ An web application that allows users to join neighbourhood and loop through ever
 5. Django 1.11.23
 6. Html & Css
 
-## Requirements
+### Requirements
 
 This project requires python3 to run
 
-## Setting up a virtual environement
+### Setting up a virtual environement
 
 To create a virtual environement, you will need to install virtualenv
 ```sh
@@ -40,7 +40,7 @@ You can always deactivate the virtual environement by entering this command
 deactivate
 ```
 
-## Usage
+### Usage
 
 Make migrations by using the command
 ```sh
@@ -52,13 +52,13 @@ You need to create a .env file and set your secret key inside it. To launch the 
  python manage.py runserver
 ```
 
-## Run tests
+### Run tests
 
 ```sh
 python manage.py test
 ```
 
-## Author
+### Author
 
 👤 **Pascaline Irabaruta**
 
@@ -66,4 +66,4 @@ python manage.py test
 * Email:pascyirabaruta456@gmail.com
 
 
-##This project is licensed under MIT [LICENSE.md](LICENSE.md) 
+#### This project is licensed under MIT [LICENSE.md](LICENSE.md) 
