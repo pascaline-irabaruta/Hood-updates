@@ -3,7 +3,7 @@
   <h1 align="center" style="color:black;">Hood-Updates ...</h1>
 </a>
 </p>
-An web application that allows users to join neighbourhood and loop through everything that happens in the neighbourhood.
+a web application that allows you to be in the loop about everything happening in your neighborhood. From contact information of different handyman to meeting announcements or even alerts.
 
 ### Technologies used
 
